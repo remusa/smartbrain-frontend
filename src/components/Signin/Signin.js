@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import './Signin.scss'
 
+// const END_POINT = 'http://localhost:3000'
+const END_POINT = 'https://smartbrain-backend-rms.herokuapp.com'
+
 class Signin extends Component {
     constructor(props) {
         super(props)
@@ -28,7 +31,7 @@ class Signin extends Component {
     }
 
     onSubmitSignIn = () => {
-        fetch('http://localhost:3000/signin', {
+        fetch(END_POINT + '/signin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

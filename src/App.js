@@ -11,6 +11,9 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition'
 import Signin from './components/Signin/Signin'
 import Register from './components/Register/Register'
 
+// const END_POINT = 'http://localhost:3000'
+const END_POINT = 'https://smartbrain-backend-rms.herokuapp.com'
+
 const particlesOptions = {
     particles: {
         number: {
@@ -110,7 +113,7 @@ class App extends Component {
             imageUrl: this.state.input,
         })
 
-        fetch('http://localhost:3000/imageurl', {
+        fetch(END_POINT + '/imageurl', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -120,7 +123,7 @@ class App extends Component {
             .then(response => response.json())
             .then(response => {
                 if (response) {
-                    fetch('http://localhost:3000/image', {
+                    fetch(END_POINT + '/image', {
                         method: 'PUT',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({

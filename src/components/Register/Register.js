@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+// const END_POINT = 'http://localhost:3000'
+const END_POINT = 'https://smartbrain-backend-rms.herokuapp.com'
+
 class Register extends Component {
     constructor(props) {
         super(props)
@@ -29,7 +32,7 @@ class Register extends Component {
     }
 
     onSubmitSignIn = () => {
-        fetch('http://localhost:3000/register', {
+        fetch(END_POINT + '/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
