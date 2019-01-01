@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Clarifai from 'clarifai'
+// import Clarifai from 'clarifai'
 import Particles from 'react-particles-js'
 
 import './App.scss'
@@ -12,7 +12,7 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition'
 import Signin from './components/Signin/Signin'
 import Register from './components/Register/Register'
 
-const app = new Clarifai.App({ apiKey: 'b212ac37878b4ea7b55a70ba0bdc5010' })
+// const app = new Clarifai.App({ apiKey: 'b212ac37878b4ea7b55a70ba0bdc5010' })
 
 const particlesOptions = {
     particles: {
@@ -26,24 +26,26 @@ const particlesOptions = {
     },
 }
 
+const initialState = {
+    input: '',
+    imageUrl: '',
+    box: {},
+    route: 'signin',
+    isSignedIn: false,
+    user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: 0,
+        joined: new Date(),
+    },
+}
+
 class App extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-            input: '',
-            imageUrl: '',
-            box: {},
-            route: 'signin',
-            isSignedIn: false,
-            user: {
-                id: '',
-                name: '',
-                email: '',
-                entries: 0,
-                joined: new Date(),
-            },
-        }
+        this.state = initialState
 
         this.loadUser = this.loadUser.bind(this)
         this.onRouteChange = this.onRouteChange.bind(this)
@@ -67,9 +69,7 @@ class App extends Component {
 
     onRouteChange = route => {
         if (route === 'signout') {
-            this.setState({
-                isSignedIn: false,
-            })
+            this.setState(initialState)
         } else if (route === 'home') {
             this.setState({
                 isSignedIn: true,
@@ -113,8 +113,16 @@ class App extends Component {
             imageUrl: this.state.input,
         })
 
-        app.models
-            .predict('a403429f2ddf4b49b307e318f00e528b', this.state.input)
+        // app.models
+        //     .predict('a403429f2ddf4b49b307e318f00e528b', this.state.input)
+        fetch('http://localhost:3000/imageurl', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                input: this.state.input,
+            }),
+        })
+            .then(response => response.json())
             .then(response => {
                 if (response) {
                     fetch('http://localhost:3000/image', {
@@ -132,6 +140,7 @@ class App extends Component {
                                 })
                             )
                         })
+                        .catch(err => console.log(err))
                 }
                 this.displayFaceBox(this.calculateFaceLocation(response))
             })
