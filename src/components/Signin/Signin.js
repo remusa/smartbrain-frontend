@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import './Signin.scss'
 
-// const END_POINT = 'http://localhost:3000'
-const END_POINT = 'https://smartbrain-backend-rms.herokuapp.com'
+const END_POINT = 'https://smartbrain-backend-rms.herokuapp.com' //'http://localhost:3000'
 
 class Signin extends Component {
     constructor(props) {

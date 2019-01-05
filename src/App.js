@@ -3,16 +3,15 @@ import Particles from 'react-particles-js'
 
 import './App.scss'
 
-import Navigation from './components/Navigation/Navigation.js'
-import Logo from './components/Logo/Logo.js'
-import Rank from './components/Rank/Rank.js'
-import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm.js'
-import FaceRecognition from './components/FaceRecognition/FaceRecognition.js'
-import Signin from './components/Signin/Signin.js'
-import Register from './components/Register/Register.js'
+import Navigation from './components/Navigation/Navigation'
+import Logo from './components/Logo/Logo'
+import Rank from './components/Rank/Rank'
+import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm'
+import FaceRecognition from './components/FaceRecognition/FaceRecognition'
+import Signin from './components/Signin/Signin'
+import Register from './components/Register/Register'
 
-// const END_POINT = 'http://localhost:3000'
-const END_POINT = 'https://smartbrain-backend-rms.herokuapp.com'
+const END_POINT = 'https://smartbrain-backend-rms.herokuapp.com' //'http://localhost:3000'
 
 const particlesOptions = {
     particles: {
